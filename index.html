@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drawing App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app">
+        <header class="toolbar">
+            <div class="group" role="group" aria-label="Tools">
+                <button class="tool" data-tool="pencil" title="Pencil (P)" aria-label="Pencil">✏️</button>
+                <button class="tool" data-tool="line" title="Line (L)" aria-label="Line">📏</button>
+                <button class="tool" data-tool="rect" title="Rectangle (R)" aria-label="Rectangle">▭</button>
+                <button class="tool" data-tool="ellipse" title="Ellipse (E)" aria-label="Ellipse">◯</button>
+                <button class="tool" data-tool="triangle" title="Triangle (T)" aria-label="Triangle">△</button>
+                <button class="tool" data-tool="star" title="Star (S)" aria-label="Star">★</button>
+                <button class="tool" data-tool="bucket" title="Fill / paint bucket (F)" aria-label="Fill">🪣</button>
+                <button class="tool" data-tool="eraser" title="Eraser (X)" aria-label="Eraser">🩹</button>
+            </div>
+
+            <div class="group">
+                <label class="field" for="color">
+                    <span>Color</span>
+                    <input type="color" id="color" value="#1e293b" aria-label="Stroke color">
+                </label>
+                <div class="swatches" id="swatches" aria-label="Color palette"></div>
+            </div>
+
+            <div class="group">
+                <label class="field" for="size">
+                    <span>Size <b id="sizeValue">6</b>px</span>
+                    <input type="range" id="size" min="1" max="80" value="6" aria-label="Stroke size">
+                </label>
+                <label class="field" for="canvasColor" title="Canvas background color">
+                    <span>Canvas</span>
+                    <input type="color" id="canvasColor" value="#ffffff" aria-label="Canvas background color">
+                </label>
+                <label class="field checkbox" for="fill">
+                    <input type="checkbox" id="fill" aria-label="Fill shape">
+                    <span>Fill shape</span>
+                </label>
+                <label class="field checkbox" for="fillColor" title="Shape fill color">
+                    <input type="color" id="fillColor" value="#a5b4fc" aria-label="Shape fill color">
+                    <span>Shape fill</span>
+                </label>
+                <label class="field checkbox" for="sparkles" title="Sparkle while drawing">
+                    <input type="checkbox" id="sparkles" checked aria-label="Sparkles">
+                    <span>✨ Sparkles</span>
+                </label>
+                <label class="field" for="sparkleAmount" title="How much sparkle spawns">
+                    <span>Amount <b id="sparkleValue">5</b></span>
+                    <input type="range" id="sparkleAmount" min="1" max="10" value="5" aria-label="Sparkle amount">
+                </label>
+            </div>
+
+            <div class="group push-right">
+                <button class="action" id="undo" title="Undo (Ctrl+Z)" disabled>↶ Undo</button>
+                <button class="action" id="redo" title="Redo (Ctrl+Y)" disabled>↷ Redo</button>
+                <button class="action" id="clear" title="Clear canvas">🗑 Clear</button>
+                <button class="action primary" id="save" title="Download as PNG">⬇ Save</button>
+            </div>
+        </header>
+
+        <main class="stage">
+            <div class="board-wrap" id="wrap">
+                <canvas id="board" aria-label="Drawing canvas"></canvas>
+                <canvas id="fx" aria-hidden="true"></canvas>
+            </div>
+        </main>
+
+        <footer class="statusbar">
+            <span id="status">Pencil</span>
+            <span id="hint">Hold Shift for squares &amp; circles · F fills</span>
+            <span id="coords">0, 0</span>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,217 @@
+:root {
+    --bg: #0f172a;
+    --panel: #1e293b;
+    --panel-2: #273449;
+    --line: #334155;
+    --text: #e2e8f0;
+    --muted: #94a3b8;
+    --accent: #6366f1;
+    --accent-2: #818cf8;
+    --radius: 10px;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    overflow: hidden;
+}
+
+.app {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 14px;
+    padding: 10px 14px;
+    background: var(--panel);
+    border-bottom: 1px solid var(--line);
+    box-shadow: 0 2px 12px rgba(0, 0, 0, .35);
+    z-index: 2;
+}
+
+.group {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px;
+    border-radius: var(--radius);
+    background: var(--panel-2);
+    border: 1px solid var(--line);
+}
+
+.push-right { margin-left: auto; }
+
+button {
+    font: inherit;
+    cursor: pointer;
+    color: var(--text);
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    transition: background .15s, transform .05s, border-color .15s;
+}
+
+button:active { transform: scale(.94); }
+button:disabled { opacity: .35; cursor: not-allowed; }
+
+.tool {
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
+    line-height: 1;
+    display: grid;
+    place-items: center;
+}
+
+.tool:hover:not(:disabled) { background: rgba(255, 255, 255, .08); }
+
+.tool.active {
+    background: var(--accent);
+    border-color: var(--accent-2);
+    box-shadow: 0 0 0 2px rgba(99, 102, 241, .35);
+}
+
+.action {
+    padding: 9px 13px;
+    font-size: 13px;
+    font-weight: 600;
+    background: rgba(255, 255, 255, .06);
+}
+
+.action:hover:not(:disabled) { background: rgba(255, 255, 255, .14); }
+
+.action.primary {
+    background: var(--accent);
+    border-color: var(--accent-2);
+}
+
+.action.primary:hover { background: var(--accent-2); }
+
+.field {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    font-size: 11px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: .04em;
+}
+
+.field b { color: var(--text); font-size: 12px; }
+
+.field input[type="range"] {
+    width: 120px;
+    accent-color: var(--accent);
+}
+
+#sparkleAmount { width: 84px; }
+
+.field input[type="color"] {
+    width: 40px;
+    height: 32px;
+    padding: 0;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    background: transparent;
+    cursor: pointer;
+}
+
+.field.checkbox {
+    flex-direction: row;
+    align-items: center;
+    gap: 6px;
+    text-transform: none;
+    letter-spacing: 0;
+    font-size: 13px;
+    color: var(--text);
+    cursor: pointer;
+}
+
+.field.checkbox input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    accent-color: var(--accent);
+    cursor: pointer;
+}
+
+.field.checkbox input[type="color"] { width: 26px; height: 26px; }
+
+.swatches {
+    display: grid;
+    grid-template-columns: repeat(6, 18px);
+    gap: 5px;
+}
+
+.swatch {
+    width: 18px;
+    height: 18px;
+    border-radius: 5px;
+    border: 1px solid rgba(0, 0, 0, .35);
+    padding: 0;
+}
+
+.swatch.active { box-shadow: 0 0 0 2px var(--accent-2); }
+
+.stage {
+    flex: 1;
+    display: grid;
+    place-items: center;
+    padding: 16px;
+    overflow: auto;
+    background-image:
+        radial-gradient(circle at 1px 1px, rgba(255, 255, 255, .06) 1px, transparent 0);
+    background-size: 22px 22px;
+}
+
+.board-wrap {
+    position: relative;
+    line-height: 0;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #ffffff;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, .5);
+}
+
+#board, #fx {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+#board {
+    touch-action: none;
+    cursor: crosshair;
+}
+
+#fx {
+    pointer-events: none;
+}
+
+.statusbar {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 6px 16px;
+    font-size: 12px;
+    color: var(--muted);
+    background: var(--panel);
+    border-top: 1px solid var(--line);
+}
+
+#hint { opacity: .75; }
+#coords { font-variant-numeric: tabular-nums; }
